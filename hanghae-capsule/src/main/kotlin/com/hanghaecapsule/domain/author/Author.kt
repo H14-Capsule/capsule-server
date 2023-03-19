@@ -53,4 +53,13 @@ class Author(
     }
 
     fun isNotAuthorized(): Boolean = !authorized
+
+    fun reIssueAuthKey(newAuthKey: String) {
+        if (authorized) {
+            throw AlreadyAuthorizedAuthorException()
+        }
+
+        authKey = newAuthKey
+        lastIssueAuthKeyAt = LocalDateTime.now()
+    }
 }

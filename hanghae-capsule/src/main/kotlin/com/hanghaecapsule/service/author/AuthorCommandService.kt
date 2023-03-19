@@ -14,7 +14,7 @@ import java.time.LocalDateTime
 
 @Transactional
 @Service
-class AuthorSaveService(
+class AuthorCommandService(
     private val authorRepository: AuthorRepository,
     private val emailSender: EmailSender,
 ) {
@@ -37,5 +37,13 @@ class AuthorSaveService(
         val author = authorRepository.findAuthor(request.id)
         val currentTime = LocalDateTime.now()
         return author.authorize(request.authKey, currentTime)
+    }
+
+    fun reIssueAuthKey(authorId: Long) {
+        val author = authorRepository.findAuthor(authorId)
+        val newAuthKey = AuthKeyGenerator.generate()
+        author.reIssueAuthKey(newAuthKey)
+
+        emailSender.send(author.email, newAuthKey)
     }
 }
