@@ -35,6 +35,7 @@ class AuthorSaveService(
 
     fun authorize(request: AuthorizeAuthorRequest): Boolean {
         val author = authorRepository.findAuthor(request.id)
-        return author.authorize(request.authKey)
+        val currentTime = LocalDateTime.now()
+        return author.authorize(request.authKey, currentTime)
     }
 }

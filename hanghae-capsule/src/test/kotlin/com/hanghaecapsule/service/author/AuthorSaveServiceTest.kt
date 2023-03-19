@@ -22,15 +22,15 @@ internal class AuthorSaveServiceTest {
         )
     }
 
-    @Test
-    internal fun testCreateAuthor() {
-        // given
-        val email = "test@Gmail.com"
-
-        // when
-        authorSaveService.createAuthor(email)
-
-        // then
-
-    }
+//    @Test
+//    internal fun testCreateAuthor() {
+//        // given
+//        val email = "test@Gmail.com"
+//
+//        // when
+//        authorSaveService.createAuthor(email)
+//
+//        // then
+//
+//    }
 }

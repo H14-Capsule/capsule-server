@@ -1,6 +1,8 @@
 package com.hanghaecapsule.domain.author
 
-import com.hanghaecapsule.domain.exception.UnAuthorizedException
+import com.hanghaecapsule.domain.exception.AlreadyAuthorizedAuthorException
+import com.hanghaecapsule.domain.exception.ExpireAuthKeyException
+import java.time.Duration
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 private const val AUTH_KEY_LENGTH = 6
+private const val EXPIRE_AUTH_KEY_MINUTES = 3
 
 @Entity
 class Author(
@@ -32,9 +35,14 @@ class Author(
         check(authKey.length == AUTH_KEY_LENGTH) { "인증키는 $AUTH_KEY_LENGTH 글자로 제한됩니다." }
     }
 
-    fun authorize(authKey: String): Boolean {
+    fun authorize(authKey: String, currentTime: LocalDateTime): Boolean {
         if (authorized) {
-            throw UnAuthorizedException("이미 인증이 완료된 작성자입니다.")
+            throw AlreadyAuthorizedAuthorException()
+        }
+
+        val duration = Duration.between(lastIssueAuthKeyAt, currentTime)
+        if (duration.toMinutes() >= EXPIRE_AUTH_KEY_MINUTES) {
+            throw ExpireAuthKeyException()
         }
 
         if (authKey == this.authKey) {

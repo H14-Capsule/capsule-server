@@ -1,6 +1,8 @@
 package com.hanghaecapsule.domain.letter
 
 import com.hanghaecapsule.domain.author.Author
+import com.hanghaecapsule.domain.exception.AlreadyAuthorizedAuthorException
+import com.hanghaecapsule.domain.exception.ExpireAuthKeyException
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -31,14 +33,15 @@ internal class AuthorTest {
     internal fun testAuthorize() {
         // given
         val authKey = "abcdef"
+        val lastIssueAuthKeyAt = LocalDateTime.of(2023, 1, 1, 0, 0)
         val author = Author(
             authKey = authKey,
-            lastIssueAuthKeyAt = LocalDateTime.of(2023, 1, 1, 0, 0),
+            lastIssueAuthKeyAt = lastIssueAuthKeyAt,
             email = "test@gmail.com",
         )
 
         // when
-        val actual = author.authorize(authKey)
+        val actual = author.authorize(authKey, lastIssueAuthKeyAt.plusMinutes(1))
 
         // then
         assertThat(actual).isTrue
@@ -48,16 +51,50 @@ internal class AuthorTest {
     internal fun testAuthorizeByIllegalAuthKey() {
         // given
         val authKey = "abcdef"
+        val lastIssueAuthKeyAt = LocalDateTime.of(2023, 1, 1, 0, 0)
         val author = Author(
             authKey = authKey,
-            lastIssueAuthKeyAt = LocalDateTime.of(2023, 1, 1, 0, 0),
+            lastIssueAuthKeyAt = lastIssueAuthKeyAt,
             email = "test@gmail.com",
         )
 
         // when
-        val actual = author.authorize("aaaaaa")
+        val actual = author.authorize("aaaaaa", lastIssueAuthKeyAt.plusMinutes(1))
 
         // then
         assertThat(actual).isFalse
+    }
+
+    @ParameterizedTest
+    @ValueSource(longs = [3, 4, 5])
+    internal fun testAuthorizeByExpireAuthKey(plusMinute: Long) {
+        // given
+        val authKey = "abcdef"
+        val lastIssueAuthKeyAt = LocalDateTime.of(2023, 1, 1, 0, 0)
+        val author = Author(
+            authKey = authKey,
+            lastIssueAuthKeyAt = lastIssueAuthKeyAt,
+            email = "test@gmail.com",
+        )
+
+        // when // then
+        assertThrows<ExpireAuthKeyException> { author.authorize(authKey, lastIssueAuthKeyAt.plusMinutes(plusMinute)) }
+    }
+
+    @Test
+    internal fun testAuthorizeByAlreadyAuthorizedAuthor() {
+        // given
+        val authKey = "abcdef"
+        val lastIssueAuthKeyAt = LocalDateTime.of(2023, 1, 1, 0, 0)
+        val author = Author(
+            authKey = authKey,
+            lastIssueAuthKeyAt = lastIssueAuthKeyAt,
+            email = "test@gmail.com",
+        )
+
+        author.authorize(authKey, lastIssueAuthKeyAt.plusMinutes(1))
+
+        // when // then
+        assertThrows<AlreadyAuthorizedAuthorException> { author.authorize(authKey, lastIssueAuthKeyAt.plusMinutes(2)) }
     }
 }
