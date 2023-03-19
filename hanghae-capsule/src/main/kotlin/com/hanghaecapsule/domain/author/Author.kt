@@ -43,4 +43,6 @@ class Author(
 
         return authorized
     }
+
+    fun isNotAuthorized(): Boolean = !authorized
 }

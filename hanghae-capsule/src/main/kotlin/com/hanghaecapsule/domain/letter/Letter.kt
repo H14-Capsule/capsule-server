@@ -15,11 +15,11 @@ class Letter(
     @Column(name = "content")
     val content: String,
 
-    @Column(name = "auth_id")
-    val authId: Long,
+    @Column(name = "author_id")
+    val authorId: Long,
 
     @Column(name = "send_date")
-    val sendDate: LocalDate,
+    val sendDate: LocalDate = LocalDate.of(2023, 7, 7), // 항해 14기 수료일
 
     @Column(name = "created_at")
     val createdAt: LocalDateTime = LocalDateTime.now(),
