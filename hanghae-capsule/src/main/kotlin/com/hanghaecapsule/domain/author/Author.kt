@@ -1,0 +1,33 @@
+package com.hanghaecapsule.domain.author
+
+import java.time.LocalDateTime
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+
+private const val AUTH_KEY_LENGTH = 6
+
+@Entity
+class Author(
+    @Column(name = "authKey", length = AUTH_KEY_LENGTH, nullable = false)
+    var authKey: String,
+
+    @Column(name = "authKey")
+    var lastIssueAuthKeyAt: LocalDateTime,
+
+    @Column(name = "email", nullable = false)
+    val email: String,
+
+    @Column(name = "authorized", nullable = false)
+    var authorized: Boolean = false,
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0L,
+) {
+    init {
+        check(authKey.length == AUTH_KEY_LENGTH) { "인증키는 $AUTH_KEY_LENGTH 글자로 제한됩니다." }
+    }
+}
