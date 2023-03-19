@@ -3,7 +3,9 @@ package com.hanghaecapsule.service.author
 import com.hanghaecapsule.common.AuthKeyGenerator
 import com.hanghaecapsule.domain.author.Author
 import com.hanghaecapsule.domain.author.AuthorRepository
+import com.hanghaecapsule.domain.author.findAuthor
 import com.hanghaecapsule.service.dto.AuthorSimpleResponse
+import com.hanghaecapsule.service.dto.AuthorizeAuthorRequest
 import com.hanghaecapsule.service.dto.CreateAuthorRequest
 import com.hanghaecapsule.service.external.EmailSender
 import org.springframework.stereotype.Service
@@ -29,5 +31,10 @@ class AuthorSaveService(
         emailSender.send(request.email, authKey)
 
         return AuthorSimpleResponse.of(author)
+    }
+
+    fun authorize(request: AuthorizeAuthorRequest): Boolean {
+        val author = authorRepository.findAuthor(request.id)
+        return author.authorize(request.authKey)
     }
 }

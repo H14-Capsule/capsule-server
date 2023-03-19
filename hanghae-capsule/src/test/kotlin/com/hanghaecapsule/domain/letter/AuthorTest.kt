@@ -1,7 +1,9 @@
 package com.hanghaecapsule.domain.letter
 
 import com.hanghaecapsule.domain.author.Author
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EmptySource
@@ -23,5 +25,39 @@ internal class AuthorTest {
                 email = "test@gmail.com",
             )
         }
+    }
+
+    @Test
+    internal fun testAuthorize() {
+        // given
+        val authKey = "abcdef"
+        val author = Author(
+            authKey = authKey,
+            lastIssueAuthKeyAt = LocalDateTime.of(2023, 1, 1, 0, 0),
+            email = "test@gmail.com",
+        )
+
+        // when
+        val actual = author.authorize(authKey)
+
+        // then
+        assertThat(actual).isTrue
+    }
+
+    @Test
+    internal fun testAuthorizeByIllegalAuthKey() {
+        // given
+        val authKey = "abcdef"
+        val author = Author(
+            authKey = authKey,
+            lastIssueAuthKeyAt = LocalDateTime.of(2023, 1, 1, 0, 0),
+            email = "test@gmail.com",
+        )
+
+        // when
+        val actual = author.authorize("aaaaaa")
+
+        // then
+        assertThat(actual).isFalse
     }
 }
