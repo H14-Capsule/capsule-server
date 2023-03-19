@@ -7,7 +7,7 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   ECR_REPOSITORY: hanghae-capsule-repository
-  ECS_SERVICE: MY_ECS_SERVICE                 # (TBD) service 생성하고 설정할 예정
+  ECS_SERVICE: hanghae-capsule-service
   ECS_CLUSTER: hanghae-capsule-server         
   ECS_TASK_DEFINITION: hanghae-capsule-task
 
