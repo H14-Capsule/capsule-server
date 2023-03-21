@@ -59,10 +59,3 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
-tasks.jar {
-	manifest {
-		attributes["Main-Class"] = "com.hanghaecapsule.HanghaeCapsuleApplicationKt"
-	}
-	from(sourceSets.main.get().output)
-}
