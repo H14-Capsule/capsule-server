@@ -1,0 +1,49 @@
+# flyctl launch added from .idea/.gitignore
+# Default ignored files
+.idea/shelf
+.idea/workspace.xml
+# Editor-based HTTP Client requests
+.idea/httpRequests
+# Datasource local storage ignored files
+.idea/dataSources
+.idea/dataSources.local.xml
+
+# flyctl launch added from hanghae-capsule/.gitignore
+hanghae-capsule/**/HELP.md
+hanghae-capsule/**/.gradle
+hanghae-capsule/**/build
+!hanghae-capsule/**/gradle/wrapper/gradle-wrapper.jar
+!hanghae-capsule/**/**/src/main/**/build
+!hanghae-capsule/**/**/src/test/**/build
+
+### STS ###
+hanghae-capsule/**/.apt_generated
+hanghae-capsule/**/.classpath
+hanghae-capsule/**/.factorypath
+hanghae-capsule/**/.project
+hanghae-capsule/**/.settings
+hanghae-capsule/**/.springBeans
+hanghae-capsule/**/.sts4-cache
+hanghae-capsule/**/bin
+!hanghae-capsule/**/**/src/main/**/bin
+!hanghae-capsule/**/**/src/test/**/bin
+
+### IntelliJ IDEA ###
+hanghae-capsule/**/.idea
+hanghae-capsule/**/*.iws
+hanghae-capsule/**/*.iml
+hanghae-capsule/**/*.ipr
+hanghae-capsule/**/out
+!hanghae-capsule/**/**/src/main/**/out
+!hanghae-capsule/**/**/src/test/**/out
+
+### NetBeans ###
+hanghae-capsule/nbproject/private
+hanghae-capsule/nbbuild
+hanghae-capsule/dist
+hanghae-capsule/nbdist
+hanghae-capsule/.nb-gradle
+
+### VS Code ###
+hanghae-capsule/**/.vscode
+fly.toml
