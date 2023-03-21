@@ -1,6 +1,6 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-alpine
 
-ARG JAR_FILE=hanghae-capsule/*.jar
-COPY ${JAR_FILE} app.jar
+ARG JAR_FILE=hanghae-capsule\*.jar
+COPY build/libs/${JAR_FILE} app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
