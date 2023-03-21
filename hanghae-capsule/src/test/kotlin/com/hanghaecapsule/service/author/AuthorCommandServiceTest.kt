@@ -3,20 +3,19 @@ package com.hanghaecapsule.service.author
 import com.hanghaecapsule.domain.author.AuthorRepository
 import com.hanghaecapsule.service.external.service.SpyEmailSenderClient
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-internal class AuthorSaveServiceTest {
+internal class AuthorCommandServiceTest {
     @Autowired
     private lateinit var authorRepository: AuthorRepository
 
-    private lateinit var authorSaveService: AuthorSaveService
+    private lateinit var authorCommandService: AuthorCommandService
 
     @BeforeEach
     internal fun setUp() {
-        authorSaveService = AuthorSaveService(
+        authorCommandService = AuthorCommandService(
             authorRepository = authorRepository,
             emailSender = SpyEmailSenderClient()
         )
