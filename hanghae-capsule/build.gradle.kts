@@ -36,7 +36,7 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
-	implementation("org.postgresql:postgresql")
+	implementation("org.mariadb.jdbc:mariadb-java-client")
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
