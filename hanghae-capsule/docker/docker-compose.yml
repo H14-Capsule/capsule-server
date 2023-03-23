@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  momsittermysql57:
+    platform: linux/x86_64
+    container_name: capsule-local-postgreSQL
+    image: postgres:15.2-alpine
+    ports:
+      - "5433:5433"
+    environment:
+      MYSQL_DATABASE: capsule
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Seoul
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
