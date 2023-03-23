@@ -8,9 +8,9 @@ processes = []
 
 [env]
   SPRING_PROFILES_ACTIVE = "prod"
-  DB_URL = "$[secrets.DATABASE_URL]"
-  DB_USERNAME = "$[secrets.DATABASE_USERNAME]"
-  DB_PASSWORD = "$[secrets.DATABASE_PASSWORD]"
+  DATABASE_URL = "$[secrets.DATABASE_URL]"
+  DATABASE_USERNAME = "$[secrets.DATABASE_USERNAME]"
+  DATABASE_PASSWORD = "$[secrets.DATABASE_PASSWORD]"
 
 [experimental]
   auto_rollback = true
