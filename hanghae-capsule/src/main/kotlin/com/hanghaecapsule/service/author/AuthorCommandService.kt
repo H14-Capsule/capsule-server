@@ -28,6 +28,7 @@ class AuthorCommandService(
             )
         )
 
+        // TODO 2023-03-24 경록: 비동기로 동작하도록 변경 예정
         emailSender.send(request.email, authKey)
 
         return AuthorSimpleResponse.of(author)
