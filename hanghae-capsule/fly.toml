@@ -11,6 +11,8 @@ processes = []
   AWS_DB_URL = "$[secrets.AWS_DB_URL]"
   AWS_DB_USERNAME = "$[secrets.AWS_DB_USERNAME]"
   AWS_DB_PASSWORD = "$[secrets.AWS_DB_PASSWORD]"
+  CAPSULE_EMAIL = "$[secrets.CAPSULE_EMAIL]"
+  CAPSULE_PASSWORD = "$[secrets.CAPSULE_PASSWORD]"
 
 [experimental]
   auto_rollback = true
