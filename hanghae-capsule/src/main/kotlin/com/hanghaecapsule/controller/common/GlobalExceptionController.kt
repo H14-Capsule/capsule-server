@@ -18,7 +18,14 @@ class GlobalExceptionController {
     }
 
     @ExceptionHandler(RuntimeException::class)
-    fun handleUnAuthorizedException(e: RuntimeException): ResponseEntity<Unit> {
-        return ResponseEntity.badRequest().build()
+    fun handleUnAuthorizedException(e: RuntimeException): ResponseEntity<ErrorResponse> {
+        return ResponseEntity(
+            ErrorResponse(e.message ?: "알 수 없는 오류가 발생하였습니다. 잠시후 시도해 주세요."),
+            HttpStatus.BAD_REQUEST,
+        )
     }
 }
+
+data class ErrorResponse(
+    val errorMessage: String,
+)
