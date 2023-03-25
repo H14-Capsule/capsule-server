@@ -3,7 +3,6 @@ package com.hanghaecapsule.service.letter
 import com.hanghaecapsule.domain.author.AuthorRepository
 import com.hanghaecapsule.domain.author.findAuthor
 import com.hanghaecapsule.domain.exception.UnAuthorizedException
-import com.hanghaecapsule.domain.letter.Letter
 import com.hanghaecapsule.domain.letter.LetterRepository
 import com.hanghaecapsule.service.dto.CreateLetterRequest
 import org.springframework.stereotype.Service
@@ -21,9 +20,8 @@ class LetterSaveService(
             throw UnAuthorizedException("인증받지 않은 작성자입니다. authorId = ${author.id}")
         }
 
-        val letter = Letter(
+        val letter = author.writeLetter(
             content = request.content,
-            authorId = author.id,
         )
 
         letterRepository.save(letter)

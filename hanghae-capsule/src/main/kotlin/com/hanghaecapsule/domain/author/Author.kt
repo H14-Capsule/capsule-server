@@ -2,6 +2,7 @@ package com.hanghaecapsule.domain.author
 
 import com.hanghaecapsule.domain.exception.AlreadyAuthorizedAuthorException
 import com.hanghaecapsule.domain.exception.ExpireAuthKeyException
+import com.hanghaecapsule.domain.letter.Letter
 import java.time.Duration
 import java.time.LocalDateTime
 import javax.persistence.Column
@@ -62,4 +63,9 @@ class Author(
         authKey = newAuthKey
         lastIssueAuthKeyAt = LocalDateTime.now()
     }
+
+    fun writeLetter(content: String): Letter = Letter(
+        content = content,
+        authorId = id,
+    )
 }
