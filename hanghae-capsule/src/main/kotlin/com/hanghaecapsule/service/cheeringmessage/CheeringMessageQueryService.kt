@@ -11,7 +11,7 @@ class CheeringMessageQueryService(
     private val cheeringMessageRepository: CheeringMessageRepository,
 ) {
     fun queryAllCheeringMessage(): List<SimpleCheeringMessageResponse> {
-        return cheeringMessageRepository.findAll()
+        return cheeringMessageRepository.findAllByOrderByIdDesc()
             .map { SimpleCheeringMessageResponse.of(it) }
     }
 }
