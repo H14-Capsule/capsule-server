@@ -12,6 +12,7 @@ class WebConfig : WebMvcConfigurer {
         registry.addMapping("/**")
             .allowedOrigins("*") // TODO 2023-03-21 경록: 임시로 설정
             .allowedOrigins("http://localhost:3000")
+            .allowedOrigins("https://6427abd087d8903adeb37bb5--mellifluous-donut-b483a5.netlify.app")
             .allowedMethods("GET", "POST", "PUT", "DELETE")
             .allowCredentials(false)
             .maxAge(3600)
