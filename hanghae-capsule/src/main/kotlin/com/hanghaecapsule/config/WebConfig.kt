@@ -13,7 +13,7 @@ class WebConfig : WebMvcConfigurer {
             .allowedOrigins("*") // TODO 2023-03-21 경록: 임시로 설정
             .allowedOrigins(
                 "http://localhost:3000",
-                "https://6427abd087d8903adeb37bb5--mellifluous-donut-b483a5.netlify.app",
+                "https://main--quiet-scone-bd388a.netlify.app",
             )
             .allowedMethods("GET", "POST", "PUT", "DELETE")
             .allowCredentials(false)
