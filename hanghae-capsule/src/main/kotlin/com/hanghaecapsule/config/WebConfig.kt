@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class WebConfig : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
-            .allowedOrigins("*") // TODO 2023-03-21 경록: 임시로 설정
             .allowedOrigins(
                 "http://localhost:3000",
                 "https://main--quiet-scone-bd388a.netlify.app",
