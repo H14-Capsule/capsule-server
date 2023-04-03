@@ -15,6 +15,7 @@ class WebConfig : WebMvcConfigurer {
                 "http://localhost:3000",
                 "https://main--quiet-scone-bd388a.netlify.app",
                 "http://www.h14capsule.shop",
+                "https://www.h14capsule.shop",
             )
             .allowedMethods("GET", "POST", "PUT", "DELETE")
             .allowCredentials(false)
