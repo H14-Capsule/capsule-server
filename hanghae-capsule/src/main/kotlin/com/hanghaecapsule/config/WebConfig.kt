@@ -14,6 +14,7 @@ class WebConfig : WebMvcConfigurer {
             .allowedOrigins(
                 "http://localhost:3000",
                 "https://main--quiet-scone-bd388a.netlify.app",
+                "http://www.h14capsule.shop",
             )
             .allowedMethods("GET", "POST", "PUT", "DELETE")
             .allowCredentials(false)
