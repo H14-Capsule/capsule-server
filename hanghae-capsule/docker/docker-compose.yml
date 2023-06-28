@@ -3,10 +3,10 @@ version: '3.8'
 services:
   momsittermysql57:
     platform: linux/x86_64
-    container_name: capsule-local-postgreSQL
-    image: postgres:15.2-alpine
+    container_name: capsule-local-mysql
+    image: mysql:8.0
     ports:
-      - "5433:5433"
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: capsule
       MYSQL_ROOT_USER: root
