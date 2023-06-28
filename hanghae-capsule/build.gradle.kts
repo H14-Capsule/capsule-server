@@ -42,6 +42,10 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
 	implementation("org.springframework.boot:spring-boot-starter-mail")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+//	PDF BOX Generator Library
+	implementation("org.apache.pdfbox:pdfbox:2.0.24")
+
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
