@@ -2,12 +2,7 @@ package com.hanghaecapsule.domain.letter
 
 import java.time.LocalDate
 import java.time.LocalDateTime
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Lob
+import javax.persistence.*
 
 @Entity(name = "letter")
 class Letter(
@@ -23,6 +18,10 @@ class Letter(
 
     @Column(name = "created_at")
     val createdAt: LocalDateTime = LocalDateTime.now(),
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "send_status", nullable = false)
+    var sendStatus: SendStatus = SendStatus.WAIT,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
