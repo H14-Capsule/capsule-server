@@ -7,13 +7,11 @@ import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.PDPageContentStream
 import org.apache.pdfbox.pdmodel.common.PDRectangle.*
 import org.apache.pdfbox.pdmodel.font.PDType0Font
-import org.apache.pdfbox.pdmodel.font.encoding.WinAnsiEncoding
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
 import org.springframework.stereotype.Component
 import java.io.File
 import java.io.FileInputStream
 import java.util.*
-
 
 @Component
 class PDFLetterFactory : LetterFactory {
@@ -27,7 +25,7 @@ class PDFLetterFactory : LetterFactory {
         document.save("${DIRECTORY_LOCATION}/${fileName}.pdf")
 
         document.close()
-        return PDFLetter("")
+        return PDFLetter("${fileName}.pdf")
     }
 
     private fun decorateLetter(document: PDDocument, content: String) {
@@ -77,7 +75,6 @@ class PDFLetterFactory : LetterFactory {
                 if (it.length < lineLimitLength) {
                     newLineAtOffset(0f, -(fontSize * 2))
                     showText(it)
-//                    newLine()
                 } else {
                     var currentContentLine = it
                     while (currentContentLine.isNotBlank() && currentContentLine.length > lineLimitLength) {
@@ -95,17 +92,10 @@ class PDFLetterFactory : LetterFactory {
         endText()
     }
 
-    private fun filteredContent(content: String): String {
-        return content.toCharArray()
-            .filter { WinAnsiEncoding.INSTANCE.contains(it.toString()) }
-            .joinToString { "" }
-    }
-
     companion object {
         private const val DIRECTORY_LOCATION = "hanghae-capsule/src/main/resources/generate"
 
-        //        private const val FONT_LOCATION = "/Users/gimgyeonglog/IdeaProjects/private/hanghae-capsule/hanghae-capsule/src/main/resources/fonts/KyoboHandwriting2022khn.otf"
         private const val FONT_LOCATION =
-            "/Users/gimgyeonglog/IdeaProjects/private/hanghae-capsule/hanghae-capsule/src/main/resources/fonts/KyoboHandwriting2022khn.ttf"
+            "{}/src/main/resources/fonts/KyoboHandwriting2022khn.ttf"
     }
 }
